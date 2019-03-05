@@ -77,13 +77,19 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2. 123456# groupadd -g 901 db2grp# groupadd -g 902 db2fgrp# groupadd -g 903 db2agrp# useradd -u 104">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/How to install DB2 server on Linux/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2. 123456# groupadd -g 901 db2grp# groupadd -g 902 db2fgrp# groupadd -g 903 db2agrp# useradd -u 104">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/assets/install_db2_s1.png">
+<meta property="og:updated_time" content="2019-03-05T10:50:15.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2. 123456# groupadd -g 901 db2grp# groupadd -g 902 db2fgrp# groupadd -g 903 db2agrp# useradd -u 104">
+<meta name="twitter:image" content="http://yoursite.com/assets/install_db2_s1.png">
 
 
 
@@ -113,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/How to install DB2 server on Linux/">
 
 
 
 
 
-  <title>Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -138,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -232,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -264,9 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/05/How to install DB2 server on Linux/" itemprop="url">Untitled</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -316,9 +319,7 @@
       
 
       
-        
-          
-            <h3 id="How-to-install-DB2-server-on-Linux"><a href="#How-to-install-DB2-server-on-Linux" class="headerlink" title="How to install DB2 server on Linux"></a>How to install DB2 server on Linux</h3><h5 id="step1"><a href="#step1" class="headerlink" title="step1:"></a>step1:</h5><p>login to linux with root account, add groups and users for DB2.</p>
+        <h3 id="How-to-install-DB2-server-on-Linux"><a href="#How-to-install-DB2-server-on-Linux" class="headerlink" title="How to install DB2 server on Linux"></a>How to install DB2 server on Linux</h3><h5 id="step1"><a href="#step1" class="headerlink" title="step1:"></a>step1:</h5><p>login to linux with root account, add groups and users for DB2.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># groupadd -g 901 db2grp</span><br><span class="line"># groupadd -g 902 db2fgrp</span><br><span class="line"># groupadd -g 903 db2agrp</span><br><span class="line"># useradd -u 1044 -g db2grp -m -d /build/db2inst1 db2inst1</span><br><span class="line"># useradd -u 1043 -g db2fgrp -m -d /build/db2fenc1 db2fenc1</span><br><span class="line"># useradd -u 1042 -g db2agrp -m -d /build/dasusr1 dasusr1</span><br></pre></td></tr></table></figure>
 <p>check from /build to see if all these db2inst1, db2fenc1 and dasusr1 folders are created there. (/build here is my example directory, you can change the directory to suit you own case.)</p>
 <h5 id="step2"><a href="#step2" class="headerlink" title="step2:"></a>step2:</h5><p>change password for the created users.</p>
@@ -367,8 +368,6 @@
 <p>db2 =&gt; connect to &lt;<font color="#FF0000">kx</font> user db2inst1 using <font color="#FF0000">pass123</font></p>
 <p>[^]: the red highlighted parts are just examples, you need to modify them to use your own data.</p>
 
-          
-        
       
     </div>
     
@@ -385,140 +384,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/04/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-04T22:06:44+08:00">
-                2019-03-04
-              </time>
+              <a href="/2019/03/04/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -528,10 +415,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -539,6 +427,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -561,8 +453,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -604,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-install-DB2-server-on-Linux"><span class="nav-number">1.</span> <span class="nav-text">How to install DB2 server on Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#step1"><span class="nav-number">1.0.1.</span> <span class="nav-text">step1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step2"><span class="nav-number">1.0.2.</span> <span class="nav-text">step2:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step3"><span class="nav-number">1.0.3.</span> <span class="nav-text">step3:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step4"><span class="nav-number">1.0.4.</span> <span class="nav-text">step4:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step5"><span class="nav-number">1.0.5.</span> <span class="nav-text">step5:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step6"><span class="nav-number">1.0.6.</span> <span class="nav-text">step6:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step7"><span class="nav-number">1.0.7.</span> <span class="nav-text">step7:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step8"><span class="nav-number">1.0.8.</span> <span class="nav-text">step8:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step9"><span class="nav-number">1.0.9.</span> <span class="nav-text">step9:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step10"><span class="nav-number">1.0.10.</span> <span class="nav-text">step10:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step11"><span class="nav-number">1.0.11.</span> <span class="nav-text">step11:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Testing-part-on-client"><span class="nav-number">1.0.12.</span> <span class="nav-text">Testing part on client:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -731,6 +648,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

@@ -4,9 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="DB2, ZQY&#39;s Lab">
-    <meta name="description" content="How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2.
-123456# groupadd">
+    <meta name="keywords" content="DB2 Client, ZQY&#39;s Lab">
+    <meta name="description" content="How to install DB2 client on UnixUsually we use DB2 clients from /home/dbclient_Linux(or AIX, Solaris)/db2, but due to s">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>DB2 | ZQY&#39;s Lab</title>
+    <title>DB2 Client | ZQY&#39;s Lab</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -162,13 +161,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        DB2
+                        DB2 Client
                     </div>
                 </div>
             </div>
@@ -214,7 +213,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-05
+                    2019-03-06
                 </div>
 
                 
@@ -225,54 +224,30 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="How-to-install-DB2-server-on-Linux"><a href="#How-to-install-DB2-server-on-Linux" class="headerlink" title="How to install DB2 server on Linux"></a>How to install DB2 server on Linux</h3><h5 id="step1"><a href="#step1" class="headerlink" title="step1:"></a>step1:</h5><p>login to linux with root account, add groups and users for DB2.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># groupadd -g 901 db2grp</span><br><span class="line"># groupadd -g 902 db2fgrp</span><br><span class="line"># groupadd -g 903 db2agrp</span><br><span class="line"># useradd -u 1044 -g db2grp -m -d /build/db2inst1 db2inst1</span><br><span class="line"># useradd -u 1043 -g db2fgrp -m -d /build/db2fenc1 db2fenc1</span><br><span class="line"># useradd -u 1042 -g db2agrp -m -d /build/dasusr1 dasusr1</span><br></pre></td></tr></table></figure>
-<p>check from /build to see if all these db2inst1, db2fenc1 and dasusr1 folders are created there. (/build here is my example directory, you can change the directory to suit you own case.)</p>
-<h5 id="step2"><a href="#step2" class="headerlink" title="step2:"></a>step2:</h5><p>change password for the created users.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># passwd db2inst1</span><br></pre></td></tr></table></figure>
-<p>change passwords for db2fenc1 and db2susr1 too.</p>
-<p>then check to see if all groups and users are created successfully.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># more /etc/group |grep db2</span><br><span class="line"># more /etc/passwd |grep db2</span><br></pre></td></tr></table></figure>
-<h5 id="step3"><a href="#step3" class="headerlink" title="step3:"></a>step3:</h5><p>copy installation package to the directory and unzip it. (here I use /build as an example.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar -svf DB2_Svr_AdvancedEnterpriseEdition_V10.5_Linux_x86-64.tar.gz</span><br></pre></td></tr></table></figure>
-<p>after unzip, you would find the newly created server directory in /build. </p>
-<p><img src="/assets/install_db2_s1.png" alt="install_db2_s1"></p>
-<h5 id="step4"><a href="#step4" class="headerlink" title="step4:"></a>step4:</h5><p>start the install process.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /build/server</span><br><span class="line"># ./db2_install</span><br></pre></td></tr></table></figure>
-<p>DB2 products would be installed in /opt/ibm/db2/V10.5 by default.</p>
-<h5 id="step5"><a href="#step5" class="headerlink" title="step5:"></a>step5:</h5><p>create db2 instance.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># cd /opt/ibm/db2/V10.5/instance</span><br><span class="line"># ./dascrt -u dasusr1</span><br><span class="line"># ./db2icrt -a server -p 55555 -s ese -u db2inst1 db2inst1</span><br></pre></td></tr></table></figure>
-<p>switch to db2inst1 to see the current instance.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># su -db2inst1</span><br><span class="line">$ db2 get instance</span><br></pre></td></tr></table></figure>
-<h5 id="step6"><a href="#step6" class="headerlink" title="step6:"></a>step6:</h5><p>configurations.(use db2inst1 account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ db2 get dbm cfg | grep SVC</span><br></pre></td></tr></table></figure>
-<p>you would see:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP/IP Service name (SVCENAME)=55555</span><br><span class="line">SSL service name (SSL_SVCENAME)=</span><br></pre></td></tr></table></figure>
-<p>Make SVCENAME to a specific name.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ db2 update dbm cfg using SVCENAME db2c_db2inst1</span><br></pre></td></tr></table></figure>
-<h5 id="step7"><a href="#step7" class="headerlink" title="step7:"></a>step7:</h5><p>modify service file. (use root account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/series</span><br></pre></td></tr></table></figure>
-<p>you would see: db2c_db2inst1 55555/tcp</p>
-<p>then set db2comm to tcpip.(use db2inst1 account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># su -db2inst1</span><br><span class="line">$ db2set DB2COMM=tcpip</span><br></pre></td></tr></table></figure>
-<h5 id="step8"><a href="#step8" class="headerlink" title="step8:"></a>step8:</h5><p>restart DB2.(use db2das and db2inst1 accounts.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ su - dasusr1</span><br><span class="line">$ db2admin stop</span><br><span class="line">$ db2admin start</span><br><span class="line">$ su -db2inst1</span><br><span class="line">$ db2stop</span><br><span class="line">$ db2start</span><br></pre></td></tr></table></figure>
-<h5 id="step9"><a href="#step9" class="headerlink" title="step9:"></a>step9:</h5><p>check if listening service is on.(use root account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># netstat -a |grep db2c_db2inst1</span><br></pre></td></tr></table></figure>
-<p>you would see:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp 0  0 *.db2c_db2inst1  *:*  LISTEN</span><br></pre></td></tr></table></figure>
-<h5 id="step10"><a href="#step10" class="headerlink" title="step10:"></a>step10:</h5><p>configure DB2 to auto start.(use root account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /opt/ibm/db2/V10.5/instance</span><br><span class="line"># ./db2iauto -on db2inst1</span><br></pre></td></tr></table></figure>
-<h5 id="step11"><a href="#step11" class="headerlink" title="step11:"></a>step11:</h5><p>create a database for testing connection.</p>
-<p>db2 =&gt; create database <font color="#FF0000">kx</font> automatic storage yes on /build/<font color="#FF0000">db2_k</font> dbpath on /build/<font color="#FF0000">db2_k</font> using codeset UTF-8 territory CN collate using system pagesize </p>
-<p>[^]: the red highlighted parts are just examples, you can modify to suit your own case.</p>
-<h5 id="Testing-part-on-client"><a href="#Testing-part-on-client" class="headerlink" title="Testing part on client:"></a>Testing part on client:</h5><p>catalog tcp/ip and database on DB2 client side.</p>
-<p>db2 =&gt; catalog tcpip node <font color="#FF0000">n1</font> remote <font color="#FF0000">10.162.198.102</font> server 55555</p>
-<p>db2 =&gt; db2 terminate  (using this command to make the node directory modification to take effect)</p>
-<p>db2 =&gt; catalog database <font color="#FF0000">kx</font> at node <font color="#FF0000">n1</font></p>
-<p>db2 =&gt; db2 terminate</p>
-<p>db2 =&gt; connect to &lt;<font color="#FF0000">kx</font> user db2inst1 using <font color="#FF0000">pass123</font></p>
-<p>[^]: the red highlighted parts are just examples, you need to modify them to use your own data.</p>
+                <h4 id="How-to-install-DB2-client-on-Unix"><a href="#How-to-install-DB2-client-on-Unix" class="headerlink" title="How to install DB2 client on Unix"></a>How to install DB2 client on Unix</h4><p>Usually we use DB2 clients from /home/dbclient_Linux(or AIX, Solaris)/db2, but due to security concerns, IT put some restrictions to DB2 clients which would not allow us to have write access to DBCLIENT directory, it means, if you want to use DB2 clients on Unix, you need to ask IT to add the node and database for you.</p>
+<p>If you do not want to involve IT for DB2 client usage, you can install your own DB2 client on your machine. The tradeoff is that you need to install for many times as the client would be installed locally, for example, if you are using box1 for a while, then you need to use another box2, you should install DB2 client on box2.</p>
+<p>Here are steps to install DB2 client on Linux: (similar steps for AIX/Solaris, just some commands differences)</p>
+<h5 id="step1"><a href="#step1" class="headerlink" title="step1:"></a>step1:</h5><p>login to your Linux box using root account</p>
+<h5 id="step2"><a href="#step2" class="headerlink" title="step2:"></a>step2:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd /build</span><br></pre></td></tr></table></figure>
+<h5 id="step3"><a href="#step3" class="headerlink" title="step3:"></a>step3:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># makedir db2_client_install_pkg</span><br></pre></td></tr></table></figure>
+<h5 id="step4"><a href="#step4" class="headerlink" title="step4:"></a>step4:</h5><p>get installation package and put in in /build/db2_client_install_pkg (for e.g. the installation package is DB2_DSClient_V10.5_Linux_x86-64.tar.gz)</p>
+<h5 id="step5"><a href="#step5" class="headerlink" title="step5:"></a>step5:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar svzf DB2_DSClient_V10.5_Linux_x86-64.tar.gz</span><br></pre></td></tr></table></figure>
+<h5 id="step6"><a href="#step6" class="headerlink" title="step6:"></a>step6:</h5><p>After step5, there would be a new directory: client under /build/ db2_client_install_pkg</p>
+<p><img src="C:\Users\sunwu\myBlog\source\assets\install_db2_c1.png" alt="install_db2_c1"></p>
+<h5 id="step7"><a href="#step7" class="headerlink" title="step7:"></a>step7:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd client</span><br><span class="line"># ./db2_install</span><br></pre></td></tr></table></figure>
+<p>it would ask you if you need to install DB2 client on the default path /opt/db2/v10.5(something similar like that), you could choose no, and specify a path, such as /build/db2v105</p>
+<h5 id="step8"><a href="#step8" class="headerlink" title="step8:"></a>step8:</h5><p>create a new directory under /build, named db2_user, then create users and groups</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># groupadd –g 901 db2grp</span><br><span class="line"># groupadd –g 902 db2fgrp</span><br><span class="line"># groupadd –g 903 db2agrp </span><br><span class="line"># useradd –u 1044 –g db2grp –m –d /build/db2_user/db2inst1 db2inst1</span><br><span class="line"># useradd –u 1043 –g db2fgrp –m –d /build/db2_user/db2fenc1 db2fenc1</span><br><span class="line"># useradd –u 1042 –g db2agrp –m –d /build/ db2_user/dasusr1 dasusr1</span><br></pre></td></tr></table></figure>
+<p> after finishing add groups and users, you would notice under /build, there are those new directories.</p>
+<p><img src="C:\Users\sunwu\myBlog\source\assets\install_db2_c2.png" alt="install_db2_c2"></p>
+<p>remember to change passwords for all the users.</p>
+<h5 id="step9"><a href="#step9" class="headerlink" title="step9:"></a>step9:</h5><p>DB2 instance initialization.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /build/db2v105/instance</span><br><span class="line"># ./db2icrt -a server -u db2inst1 db2inst1</span><br></pre></td></tr></table></figure>
+<h5 id="step10"><a href="#step10" class="headerlink" title="step10:"></a>step10:</h5><p>after the initialization, you would notice there are more files/directories under /build/db2_user/db2inst1</p>
+<h5 id="stpe11"><a href="#stpe11" class="headerlink" title="stpe11:"></a>stpe11:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cp /build/db2_user/db2inst1/sqllib/db2profile  /etc/profile.d/db2profile.sh</span><br></pre></td></tr></table></figure>
+<h5 id="step12"><a href="#step12" class="headerlink" title="step12:"></a>step12:</h5><p>under /build/db2_user/db2inst1/sqllib, source db2profile and then to use db2.</p>
+<p><img src="C:\Users\sunwu\myBlog\source\assets\install_db2_c3.png" alt="install_db2_c3"></p>
+<h5 id="step13"><a href="#step13" class="headerlink" title="step13:"></a>step13:</h5><p>now you can use db2 command to catalog your node and database, and then connect to your own DB2 database.</p>
 
             </div>
             <hr>
@@ -296,7 +271,7 @@
                     </span>
                     <a href="https://sunwukong365.github.io" class="b-link-green">ZQY's Lab</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/05/How to install DB2 server on Linux/" class="b-link-green">DB2</a>
+                    <a href="/2019/03/06/How to insall DB2 client on Unix/" class="b-link-green">DB2 Client</a>
                 </p>
             </div>
         </div>
@@ -321,40 +296,34 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/03/06/How to insall DB2 client on Unix/">
+                <a href="/2019/03/06/DB2_issues/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="DB2 Client">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt>
                         
-                        <span class="card-title">DB2 Client</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">How to install DB2 client on UnixUsually we use DB2 clients from /home/dbclient_Linux(or AIX, Solaris)/db2, but due to s</div>
+                    <div class="summary">title: 使用 DB2遇到的各种问题及解决方案
+categories: database
+tags:
+
+DB2
+
+How to manage DB2 server spaces?After you use db2 database fo</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-06
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/database/" class="post-category" target="_blank">
-                                    database
-                                </a>
-                            
+                            <i class="fa fa-user fa-fw"></i>
+                            zhong qiyu
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DB2/" target="_blank">
-                        <span class="chip bg-color">DB2</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -363,7 +332,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2019/03/05/How to install DB2 server on Linux/">
@@ -394,7 +363,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

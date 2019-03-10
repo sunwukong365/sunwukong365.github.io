@@ -4,8 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="DB2 Client, ZQY&#39;s Lab">
-    <meta name="description" content="How to install DB2 client on UnixUsually we use DB2 clients from /home/dbclient_Linux(or AIX, Solaris)/db2, but due to s">
+    <meta name="keywords" content="web_crawler, ZQY&#39;s Lab">
+    <meta name="description" content="利用python爬虫下载&amp;lt;&amp;lt;盗墓笔记&amp;gt;&amp;gt;一个简单的网页爬虫实验.
+先查看需要下载的网页的基本信息, 定位要解决和处理的问题.
+比如, 注意网页的字符编码.
+
+还要注意正文每个段落开始都有’\u3000’空白符.
+
+每">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>DB2 Client | ZQY&#39;s Lab</title>
+    <title>web_crawler | ZQY&#39;s Lab</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -161,13 +167,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        DB2 Client
+                        web_crawler
                     </div>
                 </div>
             </div>
@@ -189,8 +195,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/DB2/" target="_blank">
-                                <span class="chip bg-color">DB2</span>
+                            <a href="/tags/web-crawler/" target="_blank">
+                                <span class="chip bg-color">web-crawler</span>
                             </a>
                         
                     </div>
@@ -201,8 +207,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/database/" class="post-category" target="_blank">
-                                database
+                            <a href="/categories/python/" class="post-category" target="_blank">
+                                python
                             </a>
                         
                     </div>
@@ -213,7 +219,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-06
+                    2019-03-10
                 </div>
 
                 
@@ -224,30 +230,18 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="How-to-install-DB2-client-on-Unix"><a href="#How-to-install-DB2-client-on-Unix" class="headerlink" title="How to install DB2 client on Unix"></a>How to install DB2 client on Unix</h4><p>Usually we use DB2 clients from /home/dbclient_Linux(or AIX, Solaris)/db2, but due to security concerns, IT put some restrictions to DB2 clients which would not allow us to have write access to DBCLIENT directory, it means, if you want to use DB2 clients on Unix, you need to ask IT to add the node and database for you.</p>
-<p>If you do not want to involve IT for DB2 client usage, you can install your own DB2 client on your machine. The tradeoff is that you need to install for many times as the client would be installed locally, for example, if you are using box1 for a while, then you need to use another box2, you should install DB2 client on box2.</p>
-<p>Here are steps to install DB2 client on Linux: (similar steps for AIX/Solaris, just some commands differences)</p>
-<h5 id="step1"><a href="#step1" class="headerlink" title="step1:"></a>step1:</h5><p>login to your Linux box using root account</p>
-<h5 id="step2"><a href="#step2" class="headerlink" title="step2:"></a>step2:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd /build</span><br></pre></td></tr></table></figure>
-<h5 id="step3"><a href="#step3" class="headerlink" title="step3:"></a>step3:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># makedir db2_client_install_pkg</span><br></pre></td></tr></table></figure>
-<h5 id="step4"><a href="#step4" class="headerlink" title="step4:"></a>step4:</h5><p>get installation package and put in in /build/db2_client_install_pkg (for e.g. the installation package is DB2_DSClient_V10.5_Linux_x86-64.tar.gz)</p>
-<h5 id="step5"><a href="#step5" class="headerlink" title="step5:"></a>step5:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar svzf DB2_DSClient_V10.5_Linux_x86-64.tar.gz</span><br></pre></td></tr></table></figure>
-<h5 id="step6"><a href="#step6" class="headerlink" title="step6:"></a>step6:</h5><p>After step5, there would be a new directory: client under /build/ db2_client_install_pkg</p>
-<p><img src="C:\Users\sunwu\myBlog\source\assets\install_db2_c1.png" alt="pic1"></p>
-<h5 id="step7"><a href="#step7" class="headerlink" title="step7:"></a>step7:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd client</span><br><span class="line"># ./db2_install</span><br></pre></td></tr></table></figure>
-<p>it would ask you if you need to install DB2 client on the default path /opt/db2/v10.5(something similar like that), you could choose no, and specify a path, such as /build/db2v105</p>
-<h5 id="step8"><a href="#step8" class="headerlink" title="step8:"></a>step8:</h5><p>create a new directory under /build, named db2_user, then create users and groups</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># groupadd –g 901 db2grp</span><br><span class="line"># groupadd –g 902 db2fgrp</span><br><span class="line"># groupadd –g 903 db2agrp </span><br><span class="line"># useradd –u 1044 –g db2grp –m –d /build/db2_user/db2inst1 db2inst1</span><br><span class="line"># useradd –u 1043 –g db2fgrp –m –d /build/db2_user/db2fenc1 db2fenc1</span><br><span class="line"># useradd –u 1042 –g db2agrp –m –d /build/ db2_user/dasusr1 dasusr1</span><br></pre></td></tr></table></figure>
-<p> after finishing add groups and users, you would notice under /build, there are those new directories.</p>
-<p><img src="C:\Users\sunwu\myBlog\source\assets\install_db2_c2.png" alt="install_db2_c2"></p>
-<p>remember to change passwords for all the users.</p>
-<h5 id="step9"><a href="#step9" class="headerlink" title="step9:"></a>step9:</h5><p>DB2 instance initialization.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /build/db2v105/instance</span><br><span class="line"># ./db2icrt -a server -u db2inst1 db2inst1</span><br></pre></td></tr></table></figure>
-<h5 id="step10"><a href="#step10" class="headerlink" title="step10:"></a>step10:</h5><p>after the initialization, you would notice there are more files/directories under /build/db2_user/db2inst1</p>
-<h5 id="stpe11"><a href="#stpe11" class="headerlink" title="stpe11:"></a>stpe11:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cp /build/db2_user/db2inst1/sqllib/db2profile  /etc/profile.d/db2profile.sh</span><br></pre></td></tr></table></figure>
-<h5 id="step12"><a href="#step12" class="headerlink" title="step12:"></a>step12:</h5><p>under /build/db2_user/db2inst1/sqllib, source db2profile and then to use db2.</p>
-<p><img src="C:\Users\sunwu\myBlog\source\assets\install_db2_c3.png" alt="install_db2_c3"></p>
-<h5 id="step13"><a href="#step13" class="headerlink" title="step13:"></a>step13:</h5><p>now you can use db2 command to catalog your node and database, and then connect to your own DB2 database.</p>
+                <h3 id="利用python爬虫下载-lt-lt-盗墓笔记-gt-gt"><a href="#利用python爬虫下载-lt-lt-盗墓笔记-gt-gt" class="headerlink" title="利用python爬虫下载&lt;&lt;盗墓笔记&gt;&gt;"></a>利用python爬虫下载&lt;&lt;盗墓笔记&gt;&gt;</h3><p>一个简单的网页爬虫实验.</p>
+<p>先查看需要下载的网页的基本信息, 定位要解决和处理的问题.</p>
+<p>比如, 注意网页的字符编码.</p>
+<p><img src="C:\Users\sunwu\myBlog\source\assets\pachong-1-1552197100971.PNG" alt="pic1"></p>
+<p>还要注意正文每个段落开始都有’\u3000’空白符.</p>
+<p><img src="C:\Users\sunwu\myBlog\source\assets\pachong-2-1552197187578.PNG" alt="pic2"></p>
+<p>每个章节最后一个段落末尾有附加信息要处理.</p>
+<p><img src="C:\Users\sunwu\myBlog\source\assets\pachong-3-1552197231135.PNG" alt="pic3"></p>
+<p>Python 代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">def getContent():</span><br><span class="line">    html = urllib.request.urlopen(&quot;http://www.daomubiji.com/dao-mu-bi-ji-1&quot;).read()</span><br><span class="line">    html = html.decode(&quot;UTF-8&quot;)</span><br><span class="line">    reg = r&apos;&lt;article class=&quot;excerpt excerpt-c3&quot;&gt;&lt;a href=&quot;(.*?)&gt;(.*?)&lt;/a&gt;&lt;/article&gt;&apos;</span><br><span class="line">    reg = re.compile(reg)</span><br><span class="line">    # 获得所有章节的url以及章节名称</span><br><span class="line">    urls = re.findall(reg,html)</span><br><span class="line">    </span><br><span class="line">    for url in urls:</span><br><span class="line">        chapter_url = url[0]</span><br><span class="line">        chapter_title = url[1]</span><br><span class="line">        chapter = urllib.request.urlopen(chapter_url).read()</span><br><span class="line">        chapter = chapter.decode(&quot;UTF-8&quot;)</span><br><span class="line">        reg = r&apos;&lt;p&gt;(.*?)&lt;/p&gt;&apos;</span><br><span class="line">        reg = re.compile(reg, re.S)</span><br><span class="line">        chapter_content = re.findall(reg, chapter)</span><br><span class="line">        </span><br><span class="line">        for i in range(len(chapter_content)):</span><br><span class="line">            chapter_content[i] = chapter_content[i].replace(u&apos;\u3000&apos;, u&apos;&apos;)</span><br><span class="line">            pattern1 = re.compile(r&apos;[&lt;span style=&quot;color:#C00&quot;&gt;].*(&lt;/span&gt;)&apos;)</span><br><span class="line">            chapter_content[i] = re.sub(pattern1, &apos;&apos;, chapter_content[i])</span><br><span class="line">            pattern2 = re.compile(r&apos;&lt;a.*&apos;)</span><br><span class="line">            chapter_content[i] = re.sub(pattern2, &apos;&apos;, chapter_content[i])</span><br><span class="line">            pattern3 = re.compile(r&apos;^评论.*&apos;)</span><br><span class="line">            chapter_content[i] = re.sub(pattern3, &apos;&apos;, chapter_content[i])</span><br><span class="line">               </span><br><span class="line">        chapter_content = [item for item in chapter_content if item != &apos;&apos;]</span><br><span class="line">        </span><br><span class="line">        print(&quot;saving %s&quot; % chapter_title)</span><br><span class="line">        </span><br><span class="line">        with open(&quot;&#123;&#125;.txt&quot;.format(chapter_title),&apos;w&apos;) as f:</span><br><span class="line">            for item in chapter_content:</span><br><span class="line">                f.write(item)</span><br><span class="line">                f.write(&apos;\n&apos;)</span><br><span class="line">        </span><br><span class="line">        f.close()</span><br></pre></td></tr></table></figure>
+<p>执行后:</p>
+<p><img src="C:\Users\sunwu\myBlog\source\assets\pachong-4-1552197346095.PNG" alt="pic4"></p>
 
             </div>
             <hr>
@@ -271,7 +265,7 @@
                     </span>
                     <a href="https://sunwukong365.github.io" class="b-link-green">ZQY's Lab</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/06/How to insall DB2 client on Unix/" class="b-link-green">DB2 Client</a>
+                    <a href="/2019/03/10/web-crawler/" class="b-link-green">web_crawler</a>
                 </p>
             </div>
         </div>
@@ -294,40 +288,48 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/03/06/DB2_issues/">
+                <a href="/2019/03/10/web-crawler/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="DB2 issues">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="web_crawler">
                         
-                        <span class="card-title">DB2 issues</span>
+                        <span class="card-title">web_crawler</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">How to manage DB2 server spaces?After you use db2 database for a while, there are db2diag,log and transaction logs gener</div>
+                    <div class="summary">利用python爬虫下载&lt;&lt;盗墓笔记&gt;&gt;一个简单的网页爬虫实验.
+先查看需要下载的网页的基本信息, 定位要解决和处理的问题.
+比如, 注意网页的字符编码.
+
+还要注意正文每个段落开始都有’\u3000’空白符.
+
+每</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/database/" class="post-category" target="_blank">
-                                    database
+                            <a href="/categories/python/" class="post-category" target="_blank">
+                                    python
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DB2/" target="_blank">
-                        <span class="chip bg-color">DB2</span>
+                    <a href="/tags/web-crawler/" target="_blank">
+                        <span class="chip bg-color">web-crawler</span>
                     </a>
                     
                 </div>
@@ -341,41 +343,28 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/05/How to install DB2 server on Linux/">
+                <a href="/2019/03/10/DB2-issues/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="DB2">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="DB2_issues">
                         
-                        <span class="card-title">DB2</span>
+                        <span class="card-title">DB2_issues</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2.
-123456# groupadd</div>
+                    <div class="summary"></div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/database/" class="post-category" target="_blank">
-                                    database
-                                </a>
-                            
+                            <i class="fa fa-user fa-fw"></i>
+                            zhong qiyu
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DB2/" target="_blank">
-                        <span class="chip bg-color">DB2</span>
-                    </a>
-                    
                 </div>
                 
             </div>

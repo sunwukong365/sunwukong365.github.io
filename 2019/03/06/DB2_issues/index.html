@@ -227,7 +227,7 @@
                 <h5 id="How-to-manage-DB2-server-spaces"><a href="#How-to-manage-DB2-server-spaces" class="headerlink" title="How to manage DB2 server spaces?"></a>How to manage DB2 server spaces?</h5><p>After you use db2 database for a while, there are db2diag,log and transaction logs generated, which<br>would consume spaces of your server machine. Below steps gives you a way to clean up those logs  to free up some spaces.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db2 =&gt; set database LOGARCHMETH1 =  logretain</span><br><span class="line">db2 =&gt; get db cfg</span><br></pre></td></tr></table></figure>
 <p>you would see:</p>
-<p><img src="C:\Users\sunwu\myBlog\source\assets\db2_1.png" alt="db2_1"></p>
+<p><img src="db2_1.png"></p>
 <p>check “Path to log files” and “First active log file” items in the configure list, then issue a prune logfile command.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db2 =&gt; prune logfile prior to S0000681.LOG</span><br></pre></td></tr></table></figure>
 <p>you would notice that in C:\DB2\NODE0000\SQL00002\LOGSTREAM0000, all the log files prior to S0000681 would be deleted.</p>
@@ -246,10 +246,10 @@
 <p>First to check all the current opened user connections, then to shut down them all.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db2 =&gt; db2 list applications show detail</span><br><span class="line">db2 =&gt; db2 force application all</span><br></pre></td></tr></table></figure>
 <h5 id="connecting-to-a-database-is-not-permitted-within-a-logical-unit-of-work-when-the-connect-type-1-setting-is-in-use"><a href="#connecting-to-a-database-is-not-permitted-within-a-logical-unit-of-work-when-the-connect-type-1-setting-is-in-use" class="headerlink" title="connecting to a database is not permitted within a logical unit of work when the connect type 1 setting is in use."></a>connecting to a database is not permitted within a logical unit of work when the connect type 1 setting is in use.</h5><p>use terminate to solve this issue.</p>
-<p><img src="C:\Users\sunwu\myBlog\source\assets\db2_2.png" alt="db2_2"></p>
+<p><img src="db2_2.png"></p>
 <h5 id="how-to-handle-DB2-table-is-in-load-pending-state-issue"><a href="#how-to-handle-DB2-table-is-in-load-pending-state-issue" class="headerlink" title="how to handle DB2 table is in load pending state issue?"></a>how to handle DB2 table is in load pending state issue?</h5><p>Use “load empty file…terminate into …” method, this issue happens when loading large amount of data into a table.</p>
-<p><img src="C:\Users\sunwu\myBlog\source\assets\db2_3.png" alt="db2_3"></p>
-<p><img src="C:\Users\sunwu\myBlog\source\assets\db2_4.png" alt="db2_4"></p>
+<p><img src="db2_3.png"></p>
+<p><img src="db2_4.pgn"></p>
 <h5 id="how-to-handle-table-space-access-not-allowed-issue"><a href="#how-to-handle-table-space-access-not-allowed-issue" class="headerlink" title="how to handle table space access not allowed issue?"></a>how to handle table space access not allowed issue?</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db2 =&gt; db2 list tablespaces show detail</span><br></pre></td></tr></table></figure>
 <p>you would see :</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Tablespace ID  = 2   </span><br><span class="line">Name  = USERSPACE1   </span><br><span class="line">Type  = System managed space  </span><br><span class="line">Contents  = Any data   </span><br><span class="line">State  = 0x0020   </span><br><span class="line">Detailed explanation:   Backup pending</span><br></pre></td></tr></table></figure>
@@ -303,26 +303,26 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/03/06/python_web_crawler/">
+                <a href="/2019/03/10/web-crawler/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Python web-crawler">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="web_crawler">
                         
-                        <span class="card-title">Python web-crawler</span>
+                        <span class="card-title">web_crawler</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">利用python爬虫下载&lt;&lt;盗墓笔记&gt;&gt;一个简单的网页爬虫实验.
 先查看需要下载的网页的基本信息, 定位要解决和处理的问题.
-注意网页的字符编码.
+比如, 注意网页的字符编码.
 
-正文每个段落开始前都有’\u3000’空白符.
+还要注意正文每个段落开始都有’\u3000’空白符.
 
-每个章节最后一个</div>
+每</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-06
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-10
                         </span>
                         <span class="publish-author">
                             
@@ -354,20 +354,21 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/06/How to insall DB2 client on Unix/">
+                <a href="/2019/03/05/How to install DB2 server on Linux/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="DB2 Client">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="DB2">
                         
-                        <span class="card-title">DB2 Client</span>
+                        <span class="card-title">DB2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">How to install DB2 client on UnixUsually we use DB2 clients from /home/dbclient_Linux(or AIX, Solaris)/db2, but due to s</div>
+                    <div class="summary">How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2.
+123456# groupadd</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-05
                             </span>
                         <span class="publish-author">
                             

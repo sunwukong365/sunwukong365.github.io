@@ -4,9 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="DB2, ZQY&#39;s Lab">
-    <meta name="description" content="How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2.
-123456# groupadd">
+    <meta name="keywords" content="review_prepare, ZQY&#39;s Lab">
+    <meta name="description" content="日常工作之评审会议准备日常工作中, 有很多的评审会议要参加, 比如customer requirements review, system specification review, system architecture review, ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>DB2 | ZQY&#39;s Lab</title>
+    <title>review_prepare | ZQY&#39;s Lab</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -162,13 +161,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        DB2
+                        review_prepare
                     </div>
                 </div>
             </div>
@@ -190,8 +189,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/DB2/" target="_blank">
-                                <span class="chip bg-color">DB2</span>
+                            <a href="/tags/tips/" target="_blank">
+                                <span class="chip bg-color">tips</span>
                             </a>
                         
                     </div>
@@ -202,8 +201,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/database/" class="post-category" target="_blank">
-                                database
+                            <a href="/categories/lessons-learned/" class="post-category" target="_blank">
+                                lessons-learned
                             </a>
                         
                     </div>
@@ -214,7 +213,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-03-05
+                    2019-03-10
                 </div>
 
                 
@@ -225,54 +224,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="How-to-install-DB2-server-on-Linux"><a href="#How-to-install-DB2-server-on-Linux" class="headerlink" title="How to install DB2 server on Linux"></a>How to install DB2 server on Linux</h3><h5 id="step1"><a href="#step1" class="headerlink" title="step1:"></a>step1:</h5><p>login to linux with root account, add groups and users for DB2.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># groupadd -g 901 db2grp</span><br><span class="line"># groupadd -g 902 db2fgrp</span><br><span class="line"># groupadd -g 903 db2agrp</span><br><span class="line"># useradd -u 1044 -g db2grp -m -d /build/db2inst1 db2inst1</span><br><span class="line"># useradd -u 1043 -g db2fgrp -m -d /build/db2fenc1 db2fenc1</span><br><span class="line"># useradd -u 1042 -g db2agrp -m -d /build/dasusr1 dasusr1</span><br></pre></td></tr></table></figure>
-<p>check from /build to see if all these db2inst1, db2fenc1 and dasusr1 folders are created there. (/build here is my example directory, you can change the directory to suit you own case.)</p>
-<h5 id="step2"><a href="#step2" class="headerlink" title="step2:"></a>step2:</h5><p>change password for the created users.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># passwd db2inst1</span><br></pre></td></tr></table></figure>
-<p>change passwords for db2fenc1 and db2susr1 too.</p>
-<p>then check to see if all groups and users are created successfully.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># more /etc/group |grep db2</span><br><span class="line"># more /etc/passwd |grep db2</span><br></pre></td></tr></table></figure>
-<h5 id="step3"><a href="#step3" class="headerlink" title="step3:"></a>step3:</h5><p>copy installation package to the directory and unzip it. (here I use /build as an example.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar -svf DB2_Svr_AdvancedEnterpriseEdition_V10.5_Linux_x86-64.tar.gz</span><br></pre></td></tr></table></figure>
-<p>after unzip, you would find the newly created server directory in /build. </p>
-<p><img src="/assets/install_db2_s1.png" alt="install_db2_s1"></p>
-<h5 id="step4"><a href="#step4" class="headerlink" title="step4:"></a>step4:</h5><p>start the install process.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /build/server</span><br><span class="line"># ./db2_install</span><br></pre></td></tr></table></figure>
-<p>DB2 products would be installed in /opt/ibm/db2/V10.5 by default.</p>
-<h5 id="step5"><a href="#step5" class="headerlink" title="step5:"></a>step5:</h5><p>create db2 instance.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># cd /opt/ibm/db2/V10.5/instance</span><br><span class="line"># ./dascrt -u dasusr1</span><br><span class="line"># ./db2icrt -a server -p 55555 -s ese -u db2inst1 db2inst1</span><br></pre></td></tr></table></figure>
-<p>switch to db2inst1 to see the current instance.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># su -db2inst1</span><br><span class="line">$ db2 get instance</span><br></pre></td></tr></table></figure>
-<h5 id="step6"><a href="#step6" class="headerlink" title="step6:"></a>step6:</h5><p>configurations.(use db2inst1 account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ db2 get dbm cfg | grep SVC</span><br></pre></td></tr></table></figure>
-<p>you would see:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP/IP Service name (SVCENAME)=55555</span><br><span class="line">SSL service name (SSL_SVCENAME)=</span><br></pre></td></tr></table></figure>
-<p>Make SVCENAME to a specific name.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ db2 update dbm cfg using SVCENAME db2c_db2inst1</span><br></pre></td></tr></table></figure>
-<h5 id="step7"><a href="#step7" class="headerlink" title="step7:"></a>step7:</h5><p>modify service file. (use root account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/series</span><br></pre></td></tr></table></figure>
-<p>you would see: db2c_db2inst1 55555/tcp</p>
-<p>then set db2comm to tcpip.(use db2inst1 account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># su -db2inst1</span><br><span class="line">$ db2set DB2COMM=tcpip</span><br></pre></td></tr></table></figure>
-<h5 id="step8"><a href="#step8" class="headerlink" title="step8:"></a>step8:</h5><p>restart DB2.(use db2das and db2inst1 accounts.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ su - dasusr1</span><br><span class="line">$ db2admin stop</span><br><span class="line">$ db2admin start</span><br><span class="line">$ su -db2inst1</span><br><span class="line">$ db2stop</span><br><span class="line">$ db2start</span><br></pre></td></tr></table></figure>
-<h5 id="step9"><a href="#step9" class="headerlink" title="step9:"></a>step9:</h5><p>check if listening service is on.(use root account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># netstat -a |grep db2c_db2inst1</span><br></pre></td></tr></table></figure>
-<p>you would see:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp 0  0 *.db2c_db2inst1  *:*  LISTEN</span><br></pre></td></tr></table></figure>
-<h5 id="step10"><a href="#step10" class="headerlink" title="step10:"></a>step10:</h5><p>configure DB2 to auto start.(use root account.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /opt/ibm/db2/V10.5/instance</span><br><span class="line"># ./db2iauto -on db2inst1</span><br></pre></td></tr></table></figure>
-<h5 id="step11"><a href="#step11" class="headerlink" title="step11:"></a>step11:</h5><p>create a database for testing connection.</p>
-<p>db2 =&gt; create database <font color="#FF0000">kx</font> automatic storage yes on /build/<font color="#FF0000">db2_k</font> dbpath on /build/<font color="#FF0000">db2_k</font> using codeset UTF-8 territory CN collate using system pagesize </p>
-<p>[^]: the red highlighted parts are just examples, you can modify to suit your own case.</p>
-<h5 id="Testing-part-on-client"><a href="#Testing-part-on-client" class="headerlink" title="Testing part on client:"></a>Testing part on client:</h5><p>catalog tcp/ip and database on DB2 client side.</p>
-<p>db2 =&gt; catalog tcpip node <font color="#FF0000">n1</font> remote <font color="#FF0000">10.162.198.102</font> server 55555</p>
-<p>db2 =&gt; db2 terminate  (using this command to make the node directory modification to take effect)</p>
-<p>db2 =&gt; catalog database <font color="#FF0000">kx</font> at node <font color="#FF0000">n1</font></p>
-<p>db2 =&gt; db2 terminate</p>
-<p>db2 =&gt; connect to &lt;<font color="#FF0000">kx</font> user db2inst1 using <font color="#FF0000">pass123</font></p>
-<p>[^]: the red highlighted parts are just examples, you need to modify them to use your own data.</p>
+                <h3 id="日常工作之评审会议准备"><a href="#日常工作之评审会议准备" class="headerlink" title="日常工作之评审会议准备"></a>日常工作之评审会议准备</h3><p>日常工作中, 有很多的评审会议要参加, 比如customer requirements review, system specification review, system architecture review, code review, test specification review等等. 如何协调评审各方, 并进行高效的评审会议, 是非常影响项目推进的. </p>
+<p>通过观察, 我发现比较有效率的评审会议都有一个特点, 那就是会议前都有良好的准备并且会后有及时的跟进追踪. 我大致的总结了一下, 总体的流程如下.</p>
+<ul>
+<li>在评审会议的前3-4天, 会收到会议邀请, 会议邀请一定会包含要审议的目标文件(通常会放到sharepoint或公共盘, 每个项目成员均可访问), 另外还有一份excel文件, 项目成员review过后的所有问题都可以记录在excel文件中. </li>
+<li>评审会议当天, 在会议上只讨论项目成员review过程中提出的问题.</li>
+<li>会议过后, 会议发起人会有一封follow-up邮件, 总结review会议的结果, 并提出接下来的action item及完成时间.</li>
+<li>等action item都完成后, 最后的close-up邮件会由会议发起人发给整个项目组, 告知这次就某个版本的目标文件做过review, 针对review的所需更改都已完成, 最终完成版本. 最终将目标文档和review excel文档close. 至此, 一个完整的review才算是完成了.</li>
+</ul>
+<p>这个大致的流程是我在项目合作当中, 看到一个工程师使用过的, 相比于明天就要开评审会了, 今天才收到会议通知, 有3-4天的准备时间, 我觉得非常的”人性化”了. 另外, 很多时候, 评审会议结束了, 通常很少收到反馈信息, 我并不清楚我在评审会议上提出的问题或者建议是否实施或者落实了. 因此, 这么一个有始有终的流程, 我觉得很实用, 借鉴之后, 觉得效果也不错, 至少对于我自己的评审项目,我整体上会有一个比较清晰的管理状态.</p>
 
             </div>
             <hr>
@@ -296,7 +256,7 @@
                     </span>
                     <a href="https://sunwukong365.github.io" class="b-link-green">ZQY's Lab</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/05/How to install DB2 server on Linux/" class="b-link-green">DB2</a>
+                    <a href="/2019/03/10/review-prepare/" class="b-link-green">review_prepare</a>
                 </p>
             </div>
         </div>
@@ -319,40 +279,42 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/03/06/DB2-issues/">
+                <a href="/2019/03/10/review-prepare/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="DB2 issues">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="review_prepare">
                         
-                        <span class="card-title">DB2 issues</span>
+                        <span class="card-title">review_prepare</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">How to manage DB2 server spaces?After you use db2 database for a while, there are db2diag,log and transaction logs gener</div>
+                    <div class="summary">日常工作之评审会议准备日常工作中, 有很多的评审会议要参加, 比如customer requirements review, system specification review, system architecture review, </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/database/" class="post-category" target="_blank">
-                                    database
+                            <a href="/categories/lessons-learned/" class="post-category" target="_blank">
+                                    lessons-learned
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DB2/" target="_blank">
-                        <span class="chip bg-color">DB2</span>
+                    <a href="/tags/tips/" target="_blank">
+                        <span class="chip bg-color">tips</span>
                     </a>
                     
                 </div>
@@ -363,24 +325,23 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/05/How to install DB2 server on Linux/">
+                <a href="/2019/03/10/DB2-Client-Unix/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="DB2">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="DB2 Client">
                         
-                        <span class="card-title">DB2</span>
+                        <span class="card-title">DB2 Client</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">How to install DB2 server on Linuxstep1:login to linux with root account, add groups and users for DB2.
-123456# groupadd</div>
+                    <div class="summary">How to install DB2 client on UnixUsually we use DB2 clients from /home/dbclient_Linux(or AIX, Solaris)/db2, but due to s</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-10
                             </span>
                         <span class="publish-author">
                             
@@ -394,7 +355,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
